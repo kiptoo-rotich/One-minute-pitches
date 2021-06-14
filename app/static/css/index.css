@@ -1,3 +1,20 @@
-.head{
+.head {
     color: lightgray;
+    font-size: 19px
+}
+
+.collapse>li:hover {
+    background-color: transparent;
+    color: white;
+}
+
+.header {
+    text-align: center
+}
+
+.business {
+    background-image: url("https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1055&q=80");
+    background-repeat: no-repeat;
+    width:100%;
+    height:auto;
 }
