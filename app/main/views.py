@@ -87,3 +87,9 @@ def new_pitch():
 def pitches():
     all_pitches = Pitch.query.order_by(Pitch.posted).all()
     return render_template('pitches.html',pitches=all_pitches)
+
+@main.route('/business',methods=['GET'])
+@login_required
+def pitches():
+    all_pitches = Pitch.query.order_by(Pitch.posted).all()
+    return render_template('business.html',pitches=all_pitches)
