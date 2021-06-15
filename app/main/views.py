@@ -82,29 +82,28 @@ def new_pitch():
         all_pitches = Pitch.query.order_by(Pitch.posted).all()
     
     return render_template('newpitch.html', pitches=all_pitches,form_pitch = form_pitch)
+  
 
-@main.route('/comment/<int:id>',methods= ['POST','GET'])
+@main.route('/<int:id>',methods= ['POST','GET'])
 @login_required
 def viewPitch(id):
     eachpitch = Pitch.getPitchId(id)
     comments = Comment.getComments(id)
 
     if request.args.get("like"):
-        eachpitch=0;
         eachpitch.likes = eachpitch.likes + 1
 
         db.session.add(eachpitch)
         db.session.commit()
 
-        return redirect(eachpitch)
+        return redirect("/{pitch_id}".format(pitch_id=id))
 
     elif request.args.get("dislike"):
-        eachpitch=0;
 
         db.session.add(eachpitch)
         db.session.commit()
 
-        return redirect(eachpitch)
+        return redirect("/{pitch_id}".format(pitch_id=id))
 
     commentForm = CommentForm()
     if commentForm.validate_on_submit():
@@ -118,22 +117,23 @@ def viewPitch(id):
 
 
 
+
 @main.route('/category/product',methods= ['GET'])
 def displayProductCategory():
-    productPitches = Pitch.get_pitches('product')
+    productPitches = Pitch.get_pitches_by_category('product')
     return render_template('category/product.html',productPitches = productPitches)
     
 @main.route('/category/promotion',methods= ['POST','GET'])
 def displaypromotionCategory():
-    promotionPitches = Pitch.get_pitches('promotion')
+    promotionPitches = Pitch.get_pitches_by_category('promotion')
     return render_template('category/promotion.html',promotionPitches = promotionPitches)
 
 @main.route('/category/business',methods= ['POST','GET'])
 def displaybusinessCategory():
-    businessPitches = Pitch.get_pitches('business')
+    businessPitches = Pitch.get_pitches_by_category('business')
     return render_template('category/business.html',businessPitches = businessPitches)
 
 @main.route('/category/pickup',methods= ['POST','GET'])
 def displayPickupCategory():
-    pickupPitches = Pitch.get_pitches('pickup')
+    pickupPitches = Pitch.get_pitches_by_category('pickup')
     return render_template('category/pickup.html',pickupPitches = pickupPitches)
