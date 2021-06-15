@@ -12,7 +12,9 @@ def index():
     '''
     View root page function that returns the index page and its data.
     '''
-    return render_template('index.html')
+    form_pitch = PitchForm()
+    all_pitches = Pitch.query.order_by(Pitch.posted).all()
+    return render_template('index.html', pitches = all_pitches)
 
 
 @main.route('/user/<uname>')
@@ -75,7 +77,7 @@ def new_pitch():
         db.session.add(new_pitch)
         db.session.commit()
         
-        return redirect(url_for('main.pitches'))
+        return redirect(url_for('main.index'))
     else:
         all_pitches = Pitch.query.order_by(Pitch.posted).all()
     
@@ -112,15 +114,9 @@ def viewPitch(id):
 
         newComment.saveComment()
 
-    return render_template('main.pitches.html',commentForm = commentForm,comments = comments,pitch = eachpitch)
+    return render_template('comment.html',commentForm = commentForm,comments = comments,pitch = eachpitch)
 
 
-@main.route('/pitches',methods=['GET'])
-@login_required
-def pitches():
-    form_pitch = PitchForm()
-    all_pitches = Pitch.query.order_by(Pitch.posted).all()
-    return render_template('pitches.html',pitches=all_pitches)
 
 @main.route('/category/product',methods= ['GET'])
 def displayProductCategory():
