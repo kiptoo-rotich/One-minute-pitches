@@ -20,16 +20,16 @@
 </div>
 {%for pitch in pitches %}
 <div class="container">
-    <div class="">
+    <div class="home">
         <div>
             <h4>Category: {{pitch.pitch_category}}</h4>
         </div>
         <div>
             <h6>Title: {{pitch.pitch_title}}</h6>
         </div>
-        <div>
+        <div class="pitch">
             <h6>{{pitch.pitch_comment}}</h6>
-            <p>Posted on {{pitch.posted}}</p>
+            <p>Posted on {{pitch.posted.strftime('%Y-%m-%d')}}</p>
             <a href="/{{pitch.id}}?like=1">
                 <img src="../static/icons/icons8-good-quality (1).gif" alt="Icon" width="40px" height="40px"></a>
             {{pitch.likes}} <a href="/{{pitch.id}}?dislike=1">

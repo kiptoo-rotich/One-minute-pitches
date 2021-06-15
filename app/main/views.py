@@ -90,20 +90,20 @@ def viewPitch(id):
     eachpitch = Pitch.getPitchId(id)
     comments = Comment.getComments(id)
 
-    if request.args.get("like"):
-        eachpitch.likes = eachpitch.likes + 1
+    # if request.args.get("like"):
+    #     eachpitch.likes = eachpitch.likes + 1
 
-        db.session.add(eachpitch)
-        db.session.commit()
+    #     db.session.add(eachpitch)
+    #     db.session.commit()
 
-        return redirect("/{pitch_id}".format(pitch_id=id))
+    #     return redirect("/{pitch_id}".format(pitch_id=id))
 
-    elif request.args.get("dislike"):
+    # elif request.args.get("dislike"):
 
-        db.session.add(eachpitch)
-        db.session.commit()
+    #     db.session.add(eachpitch)
+    #     db.session.commit()
 
-        return redirect("/{pitch_id}".format(pitch_id=id))
+    #     return redirect("/{pitch_id}".format(pitch_id=id))
 
     commentForm = CommentForm()
     if commentForm.validate_on_submit():
