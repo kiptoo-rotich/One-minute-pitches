@@ -115,25 +115,3 @@ def viewPitch(id):
 
     return render_template('comment.html',commentForm = commentForm,comments = comments,pitch = eachpitch)
 
-
-
-
-@main.route('/category/product',methods= ['GET'])
-def displayProductCategory():
-    productPitches = Pitch.get_pitches_by_category('product')
-    return render_template('category/product.html',productPitches = productPitches)
-    
-@main.route('/category/promotion',methods= ['POST','GET'])
-def displaypromotionCategory():
-    promotionPitches = Pitch.get_pitches_by_category('promotion')
-    return render_template('category/promotion.html',promotionPitches = promotionPitches)
-
-@main.route('/category/business',methods= ['POST','GET'])
-def displaybusinessCategory():
-    businessPitches = Pitch.get_pitches_by_category('business')
-    return render_template('category/business.html',businessPitches = businessPitches)
-
-@main.route('/category/pickup',methods= ['POST','GET'])
-def displayPickupCategory():
-    pickupPitches = Pitch.get_pitches_by_category('pickup')
-    return render_template('category/pickup.html',pickupPitches = pickupPitches)
