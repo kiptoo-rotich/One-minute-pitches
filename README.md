@@ -1,4 +1,4 @@
-#  Award
+#  PITCHES
 
 #### Author: [Kiptoo Rotich](https://github.com/kiptoo-rotich)
 
@@ -70,7 +70,7 @@ Install dependancies that will create an environment for the app to run
 ```bash
 python3.8 manage.py runserver
 ```
-Open [localhost:8000](http://127.0.0.1:5000/)
+Open [localhost:5000](http://127.0.0.1:5000/)
 
        
 ## Built With
