@@ -115,3 +115,20 @@ def viewPitch(id):
 
     return render_template('comment.html',commentForm = commentForm,comments = comments,pitch = eachpitch)
 
+@main.route('/comment/<int:id>', methods=['POST'])
+@login_required
+def comment(id):
+    comment_form = CommentForm(id)
+    if comment_form.validate_on_submit():
+        pitch_comment = comment_form.pitch_comment.data
+        new_comment = Comment(pitch_comment=pitch_comment, user=current_user)
+        
+        new_comment.saveComment()
+        db.session.add(new_comment)
+        db.session.commit()
+        
+        return redirect(url_for('main.index'))
+    else:
+        all_comments = Comment.query.order_by(Comment.posted).all()
+    
+    return render_template('comment.html', pitches=all_comments,comment_form = comment_form)
